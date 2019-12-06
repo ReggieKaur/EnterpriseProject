@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div>
+			Create a user by filling out the fields below:
+			<hr/>
+			<form action="/users_create" method="post">
+			
+				<input placeholder="Name" name="book_name"/>
+				<input placeholder="Author" name="author"/>
+				<button>Submit</button>
+			</form>
+			
+			Show users:
+			<hr/>
+			<form action="/users_get" method="get">
+				
+				<button>Show</button>
+			</form>
+			
+			Update a user data by filling out the fields below:
+			<hr/>
+			<form action="/users_update" method="post">
+				<input type="hidden" name="_method" value="PUT">
+				<input placeholder="Name" name="book_name"/>
+				<input placeholder="Author" name="author"/>
+				<button>Update</button>
+			</form>
+			
+			Delete a user data by filling out the fields below:
+			<hr/>
+			<form action="/users_delete" method="post">
+				<input type="hidden" name="_method" value="DELETE">
+				<input placeholder="Name" name="book_name"/>
+				<button>Delete</button>
+			</form>
+		</div>
+	</body>
+</html>
