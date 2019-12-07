@@ -47,5 +47,21 @@ MongoClient.connect(url, function(err, db) {
 });
 
 
+//c.	Update data into your database through PUT Services.
+app.post('/users_update', (req,res) => {
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("collegeDatabase");
+  var myquery = { "student_id":req.body.student_id};
+  var newvalues = { $set: {"student_name":req.body.student_name, "student_phone":req.body.student_phone, "student_address": req.body.student_address, "student_email":req.body.student_email, "courses_taken":req.body.courses_taken} };
+  dbo.collection("student").updateOne(myquery, newvalues, function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+    db.close();
+  });
+});
+});
+
 const port = process.env.PORT || 8081;
 app.listen(port, () => console.log('Listening to port ${port}..'));
