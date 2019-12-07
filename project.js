@@ -30,6 +30,21 @@ app.post('/users_create', (req,res) => {
 
 });
 
+	
+//a.	Read data from your database through GET Services.
+app.get('/users_get', (req,res) => {
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("collegeDatabase");
+  var show = req.body.collection_name;
+  dbo.collection("student").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+    db.close();
+  });
+});
+});
 
 
 const port = process.env.PORT || 8081;
