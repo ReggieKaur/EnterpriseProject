@@ -63,5 +63,21 @@ MongoClient.connect(url, function(err, db) {
 });
 });
 
+//d.	Delete data from your database through DELETE Services. 
+app.post('/users_delete', (req,res) => {
+   MongoClient.connect(url, function(err, db) {
+   if (err) throw err;
+   var dbo = db.db("collegeDatabase");
+   var myobj = { "student_id":req.body.student_id};
+   dbo.collection("student").deleteOne(myobj, function(err, result) {
+    if (err) throw err;
+    res.send(result);
+    console.log("1 document deleted");
+    db.close();
+  });
+});
+});
+
+
 const port = process.env.PORT || 8081;
 app.listen(port, () => console.log('Listening to port ${port}..'));
